@@ -1,5 +1,5 @@
 #include "MenuVector.h"
-#include "MenuSequence.h"
+#include "../Sequence_menu/MenuSequence.h"
 
 int chooseType() {
     int type = 0;

@@ -2,7 +2,7 @@
 #include <iostream>
 #include <complex>
 #include <cassert>
-#include "../DataStructures/Matrix.h"
+#include "../../DataStructures/Matrix.h"
 
 void testMatrixInitialization() {
     auto **arr = new float*[2];

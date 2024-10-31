@@ -1,7 +1,7 @@
 #ifndef LABORATORY_WORK_2_MENUVECTOR_H
 #define LABORATORY_WORK_2_MENUVECTOR_H
 #include <iostream>
-#include "../DataStructures/Vector.h"
+#include "../../DataStructures/Vector.h"
 #include <complex>
 
 using namespace std;

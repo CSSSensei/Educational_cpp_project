@@ -7,11 +7,11 @@
 
 #include <string>
 #include <unordered_map>
-#include "../Sequence/Sequence.h"
-#include "../Sort/BubbleSort.h"
-#include "../Sort/BatcherSort.h"
-#include "../Sort/QuickSort.h"
-#include "../Sort/SelectionSort.h"
+#include "../../Sequence/Sequence.h"
+#include "../../Sort/BubbleSort.h"
+#include "../../Sort/BatcherSort.h"
+#include "../../Sort/QuickSort.h"
+#include "../../Sort/SelectionSort.h"
 #include <chrono>
 
 int Compare(int a, int b) {

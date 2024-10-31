@@ -1,8 +1,8 @@
 #include <limits>
 #include "MenuSequence.h"
-#include "../Sequence/ArraySequence.h"
-#include "../Sequence/LinkedListSequence.h"
-#include "MenuSort.h"
+#include "../../Sequence/ArraySequence.h"
+#include "../../Sequence/LinkedListSequence.h"
+#include "../Sort_menu/MenuSort.h"
 
 Command hash_command(const std::string &command) {
     static const std::unordered_map<std::string, Command> commandMap = {

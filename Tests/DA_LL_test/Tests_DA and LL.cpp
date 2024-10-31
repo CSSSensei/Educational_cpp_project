@@ -1,9 +1,9 @@
 #include "Tests_DA and LL.h"
 #include <cassert>
 #include "iostream"
-#include "../Base/DynamicArray.h"
-#include "../Base/LinkedList.h"
-#include "../Base/LinkedList.cpp"
+#include "../../Base/DynamicArray.h"
+#include "../../Base/LinkedList.h"
+#include "../../Base/LinkedList.cpp"
 
 using namespace std;
 

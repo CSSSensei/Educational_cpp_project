@@ -11,15 +11,15 @@
 
 #ifndef LABORATORY_WORK_2_MENUALL_H
 #define LABORATORY_WORK_2_MENUALL_H
-#include "MenuMatrix.h"
-#include "MenuVector.h"
-#include "../Tests/Tests_Matrix.h"
-#include "../Tests/Tests_Vector.h"
-#include "../Tests/Tests_DA and LL.h"
-#include "../Tests/Tests_AS and LLS.h"
-#include "MenuSequence.h"
-#include "../TestSort/MenuTest.h"
-#include "../TestSort/LoadTests.h"
+#include "Matrix_menu/MenuMatrix.h"
+#include "Vector_menu/MenuVector.h"
+#include "../Tests/Matrix_test/Tests_Matrix.h"
+#include "../Tests/Vector_test/Tests_Vector.h"
+#include "../Tests/DA_LL_test/Tests_DA and LL.h"
+#include "../Tests/AS_LLS_test/Tests_AS and LLS.h"
+#include "Sequence_menu/MenuSequence.h"
+#include "../Tests/Sort_test/SortTest.h"
+#include "../Tests/Sort_test/LoadTests.h"
 
 void menuAll() {
     int var;

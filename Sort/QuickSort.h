@@ -23,8 +23,8 @@ private:
     }
 
     int partition(Sequence<T>* seq, int (*cmp)(T, T), int left, int right) {
-        T pivot = seq->Get(right); // Taking the last element as pivot
-        int i = left - 1; // Index of smaller element
+        T pivot = seq->Get(right); // Последний элемент опорный
+        int i = left - 1;
 
         for (int j = left; j < right; j++) {
             if (cmp(seq->Get(j), pivot) <= 0) {
@@ -41,7 +41,7 @@ private:
         T temp = seq->Get(i + 1);
         seq->Set(i + 1, seq->Get(right));
         seq->Set(right, temp);
-        return i + 1; // Return the partitioning index
+        return i + 1;
     }
 };
 #endif //S3_LABORATORY_WORK_2_QUICKSORT_H

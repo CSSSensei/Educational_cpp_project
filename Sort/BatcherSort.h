@@ -47,7 +47,7 @@ private:
 
         // Копируем отсортированные элементы обратно в исходную последовательность
         for (int k = 0; k < merged.GetLength(); ++k) {
-            seq->Set(left + k, merged.Get(k)); // добавляем индекс
+            seq->Set(left + k, merged.Get(k));
         }
     }
 

@@ -4,7 +4,7 @@
 
 #include <string>
 #include <unordered_map>
-#include "../Sequence/Sequence.h"
+#include "../../Sequence/Sequence.h"
 #include <limits>
 
 enum class Command {

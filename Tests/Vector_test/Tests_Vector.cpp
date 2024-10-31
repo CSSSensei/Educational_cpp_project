@@ -3,8 +3,8 @@
 #include <iostream>
 #include <complex>
 #include <cassert>
-#include "../Sequence/ArraySequence.h"
-#include "../DataStructures/Vector.h"
+#include "../../Sequence/ArraySequence.h"
+#include "../../DataStructures/Vector.h"
 
 void testVectorInitialization() {
 

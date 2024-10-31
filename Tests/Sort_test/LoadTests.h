@@ -10,13 +10,13 @@
 #include <vector>
 #include <fstream>
 #include "GenerateData.h"
-#include "../Sort/ISorter.h"
-#include "../Sort/BubbleSort.h"
-#include "../Sort/BatcherSort.h"
-#include "../Sort/QuickSort.h"
-#include "../Sort/SelectionSort.h"
+#include "../../Sort/ISorter.h"
+#include "../../Sort/BubbleSort.h"
+#include "../../Sort/BatcherSort.h"
+#include "../../Sort/QuickSort.h"
+#include "../../Sort/SelectionSort.h"
 #include "sstream"
-#include "../Sequence/ArraySequence.h"
+#include "../../Sequence/ArraySequence.h"
 
 struct Person {
     std::string firstName;

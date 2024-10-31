@@ -1,8 +1,8 @@
-#include "../Tests/Tests_AS and LLS.h"
+#include "Tests_AS and LLS.h"
 #include <cassert>
 #include <cstdlib>
-#include "../Sequence/ArraySequence.h"
-#include "../Sequence/LinkedListSequence.h"
+#include "../../Sequence/ArraySequence.h"
+#include "../../Sequence/LinkedListSequence.h"
 #include "iostream"
 
 float round_float2(float a, int order) {
