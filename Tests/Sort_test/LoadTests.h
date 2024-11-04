@@ -29,7 +29,7 @@ struct Person {
             : firstName(std::move(fName)), lastName(std::move(lName)), birthYear(bYear), height(h), weight(w) {}
 };
 int compareByBirthYear(const Person a, const Person b) {
-    return (a.birthYear >= b.birthYear) - (a.birthYear <= b.birthYear); // Общая сортировка по возрастанию
+    return (a.weight >= b.weight) - (a.weight <= b.weight); // Общая сортировка по возрастанию
 }
 
 ArraySequence<Person> ReadTestData(const std::string& filename) {
@@ -54,7 +54,7 @@ ArraySequence<Person> ReadTestData(const std::string& filename) {
         people.Append(Person(firstName, lastName, birthYear, height, weight));
     }
     return people;
-}
+}//Qt Creator
 
 template<typename T, typename Sorter>
 double MeasureSortTime(ArraySequence<T>& data, Sorter& sorter) {
@@ -63,33 +63,47 @@ double MeasureSortTime(ArraySequence<T>& data, Sorter& sorter) {
     auto end = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> diff = end - start;
-    return diff.count(); // Возвращаем время в секундах
+    return diff.count();
 }
 
 void loadtestsort_main() {
     // Генерация тестовых данных
-    std::vector<int> dataSizes = {1000, 10000, 100000};
+    std::vector<int> dataSizes = {1000, 10000, 20000, 30000, 50000, 75000, 100000, 200000, 300000};
+
+    // Запись результатов в файл
+    std::ofstream resultFile("C:/Users/tomin/PycharmProjects/pythonProject/results.csv");
+    if (!resultFile.is_open()) {
+        std::cerr << "Ошибка при открытии файла для записи!" << std::endl;
+        return;
+    }
+
+    resultFile << "Data Size,Sorter Name,Time (seconds)\n";
+
     for (int size : dataSizes) {
         GenerateTestData("test_data.csv", size);
         ArraySequence<Person> people = ReadTestData("test_data.csv");
 
-        std::vector<std::pair<std::string, ISorter<Person> *>>
-                sorters = {
+        std::vector<std::pair<std::string, ISorter<Person> *>> sorters = {
                 {"Quick Sort", new QuickSort<Person>()},
                 {"Batcher Sort", new BatcherSort<Person>()},
                 {"Bubble Sort", new BubbleSorter<Person>()},
-                {"Selection Sort", new SelectionSorter<Person>()},
-
+                {"Selection Sort", new SelectionSorter<Person>()}
         };
+
         std::cout << "___ Size test: " << size << " ___\n";
-        for (const auto &[name, sorter]: sorters) {
-            if ((name == "Bubble Sort" || name == "Selection Sort") && size > 10000) continue;
-            double time = MeasureSortTime(people, *sorter);
+        for (const auto &[name, sorter]: sorters) { // структурное связывание
+            if (( name == "Selection Sort" && size > 30000) || (name == "Bubble Sort" && size > 20000)) continue;
+
+            ArraySequence<Person> dataCopy = people;
+            double time = MeasureSortTime(dataCopy, *sorter);
             std::cout << name << " Time: " << time << " seconds\n";
-            delete sorter; // Освобождение памяти после использования
+
+            resultFile << size << "," << name << "," << time << "\n";
+            delete sorter;
         }
     }
 
+    resultFile.close();
 }
 
 #endif //S3_LABORATORY_WORK_2_LOADTESTS_H
