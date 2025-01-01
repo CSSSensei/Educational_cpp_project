@@ -39,4 +39,8 @@ add_executable(S3_laboratory_work_2
         interface_menu/Sort_menu/MenuSort.h
         Tests/Sort_test/LoadTests.h
         Tests/Sort_test/GenerateData.h
+        Map/HashMap.h
+        Map/IDictionary.h
+        DataStructures/SubstringAnalyzer.h
+        DataStructures/Histogram.h
 )
