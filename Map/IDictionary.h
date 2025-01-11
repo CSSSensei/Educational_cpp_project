@@ -14,5 +14,7 @@ public:
     virtual void Add(const TKey& key, const TElement& element) = 0;
 
     virtual void Remove(const TKey& key) = 0;
+
+    virtual std::vector<std::pair<TKey, TElement>> GetItems() = 0;
 };
 #endif //S3_LABORATORY_WORK_2_IDICTIONARY_H

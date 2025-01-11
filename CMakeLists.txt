@@ -43,4 +43,5 @@ add_executable(S3_laboratory_work_2
         Map/IDictionary.h
         DataStructures/SubstringAnalyzer.h
         DataStructures/Histogram.h
+        Tests/Histogram_test/Histogram_test.h
 )

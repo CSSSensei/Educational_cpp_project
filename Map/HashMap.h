@@ -7,9 +7,8 @@
 #include <utility> // для std::pair
 #include <iostream>
 #include <functional>
-#include <stdexcept>
 
-template <typename TKey, typename TElement>
+template <typename TKey, typename TElement, typename Hash = std::hash<TKey>>
 class HashMap : public IDictionary<TKey, TElement> {
 private:
     struct HashNode {
@@ -23,7 +22,7 @@ private:
     int capacity;
 
     int HashFunction(const TKey& key) const {
-        return std::hash<TKey>()(key) % capacity;
+        return Hash()(key) % capacity;
     }
 
     void ResizeTable() {
@@ -32,7 +31,7 @@ private:
 
         for (const auto& bucket : table) {
             for (const auto& node : bucket) {
-                int newIndex = std::hash<TKey>()(node.key) % capacity;
+                int newIndex = Hash()(node.key) % capacity;
                 newTable[newIndex].emplace_back(node.key, node.value);
             }
         }
@@ -48,27 +47,23 @@ public:
         typename std::list<HashNode>::const_iterator nodeIter;
 
         void AdvanceToNextValid() {
-            // Продвигаем итератор до следующего валидного элемента
             while (bucketIter != hashmap.table.end()) {
                 if (nodeIter != bucketIter->end()) {
                     return; // Действительный элемент найден
                 }
-                // Переход к следующему "ведру"
+                // Переход к следующему
                 ++bucketIter;
                 if (bucketIter != hashmap.table.end()) {
-                    nodeIter = bucketIter->begin(); // Переход к началу нового "ведра"
+                    nodeIter = bucketIter->begin(); // Переход к началу нового
                 }
             }
-            // Если дошли до конца, nodeIter будет указывать на end, чтобы показать завершение
         }
 
     public:
         Iterator(const HashMap& map, bool atEnd = false)
                 : hashmap(map),
                   bucketIter(atEnd ? map.table.end() : map.table.begin()) {
-            // Определяем начальное значение nodeIter
             nodeIter = (bucketIter != hashmap.table.end()) ? bucketIter->begin() : typename std::list<HashNode>::const_iterator();
-            // Если не atEnd, продвигаем до следующего валидного
             if (!atEnd) {
                 AdvanceToNextValid();
             }
@@ -105,6 +100,7 @@ public:
     Iterator end() const {
         return Iterator(*this, true);
     }
+
     HashMap(int initialCapacity = 10) : capacity(initialCapacity), count(0) {
         table.resize(capacity);
     }
@@ -176,7 +172,15 @@ public:
         throw std::runtime_error("Key not found");
     }
 
-
+    std::vector<std::pair<TKey, TElement>> GetItems() override {
+        std::vector<std::pair<TKey, TElement>> items;
+        for (const auto& bucket : table) {
+            for (const auto& node : bucket) {
+                items.emplace_back(node.key, node.value);
+            }
+        }
+        return items;
+    }
 
     // Метод для печати содержимого HashMap
     void Print() const {

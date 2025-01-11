@@ -1,6 +1,5 @@
 #ifndef S3_LABORATORY_WORK_2_SUBSTRINGANALYZER_H
 #define S3_LABORATORY_WORK_2_SUBSTRINGANALYZER_H
-
 #include <iostream>
 #include <string>
 #include "../Map/HashMap.h"
@@ -13,14 +12,18 @@ private:
     std::string s; // Входная строка
     int lmin;      // Минимальная длина искомых подстрок
     int lmax;      // Максимальная длина искомых подстрок
+    struct StringHash {
+        size_t operator()(const std::string& key) const {
+            return std::hash<std::string>()(key);
+        }
+    };
 public:
-    // Конструктор для поиска по заданным длинам подстрок
     SubstringAnalyzer(const std::string& input, int minLength, int maxLength)
             : s(input), lmin(minLength), lmax(maxLength) {}
 
     // Метод для поиска наиболее частых подстрок в диапазоне [lmin, lmax]
     std::vector<std::pair<std::string, int>> findMostFrequentSubstrings() {
-        HashMap<std::string, std::vector<int>> substringMap;
+        HashMap<std::string, std::vector<int>, StringHash> substringMap;
 
         // Строим таблицу префиксов
         for (size_t i = 0; i < s.size(); ++i) {
@@ -45,10 +48,6 @@ public:
             }
         }
 
-        std::cout << "Max occurrences: " << maxOccurrences << std::endl;
-        std::cout << "------------" << std::endl;
-
-        // Формируем список с наиболее часто встречающимися подстроками
         cnt = 0;
         std::vector<std::pair<std::string, int>> result;
         for (const auto& node : substringMap) {
@@ -99,6 +98,22 @@ public:
         });
 
         return results;
+    }
+
+    std::string getMostFrequentResultsAsString(const std::vector<std::pair<std::string, int>>& results) const {
+        std::string output;
+        for (const auto& result : results) {
+            output += "Substring: \"" + result.first + "\", Occurrences: " + std::to_string(result.second) + "\n";
+        }
+        return output;
+    }
+
+    std::string getScoreResultsAsString(const std::vector<std::pair<std::string, double>>& results) const {
+        std::string output;
+        for (const auto& result : results) {
+            output += "Substring: \"" + result.first + "\", Score: " + std::to_string(result.second) + "\n";
+        }
+        return output;
     }
 
     // Метод для вывода результатов по наиболее частым подстрокам

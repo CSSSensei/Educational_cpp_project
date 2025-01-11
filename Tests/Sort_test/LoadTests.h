@@ -54,7 +54,7 @@ ArraySequence<Person> ReadTestData(const std::string& filename) {
         people.Append(Person(firstName, lastName, birthYear, height, weight));
     }
     return people;
-}//Qt Creator
+}
 
 template<typename T, typename Sorter>
 double MeasureSortTime(ArraySequence<T>& data, Sorter& sorter) {
